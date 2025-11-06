@@ -90,6 +90,27 @@ export async function facilitiesRoutes(fastify: FastifyInstance) {
   });
 
   /**
+   * GET /facilities/types
+   * Get all facility types
+   */
+  fastify.get('/types', async (request: FastifyRequest, reply: FastifyReply) => {
+    try {
+      const types = await getFacilityTypes();
+
+      return reply.send({
+        success: true,
+        data: { types },
+      });
+    } catch (error: any) {
+      request.log.error(error);
+      return reply.status(500).send({
+        error: 'Failed to fetch facility types',
+        message: error.message,
+      });
+    }
+  });
+
+  /**
    * GET /facilities/:id
    * Get facility by ID
    */
@@ -114,27 +135,6 @@ export async function facilitiesRoutes(fastify: FastifyInstance) {
       request.log.error(error);
       return reply.status(500).send({
         error: 'Failed to fetch facility',
-        message: error.message,
-      });
-    }
-  });
-
-  /**
-   * GET /facilities/types
-   * Get all facility types
-   */
-  fastify.get('/types', async (request: FastifyRequest, reply: FastifyReply) => {
-    try {
-      const types = await getFacilityTypes();
-
-      return reply.send({
-        success: true,
-        data: { types },
-      });
-    } catch (error: any) {
-      request.log.error(error);
-      return reply.status(500).send({
-        error: 'Failed to fetch facility types',
         message: error.message,
       });
     }
