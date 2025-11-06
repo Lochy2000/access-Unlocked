@@ -1,0 +1,41 @@
+{
+  "name": "access-unlocked",
+  "version": "1.0.0",
+  "description": "A travel companion application for people with mobility issues. Access-Unlocked helps users locate the nearest accessible amenities including lifts, accessible toilets, ramps, parking spaces, and other critical facilities.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f",
+    "test": "echo \"Tests coming soon\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:63388/git/Lochy2000/access-Unlocked"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^11.1.0",
+    "axios": "^1.13.2",
+    "dotenv": "^17.2.3",
+    "fastify": "^5.6.1",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/node": "^24.10.0",
+    "@types/pg": "^8.15.6",
+    "nodemon": "^3.1.10",
+    "pino-pretty": "^13.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
