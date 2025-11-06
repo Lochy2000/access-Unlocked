@@ -13,7 +13,7 @@ export const pool = new Pool({
 export async function testConnection(): Promise<boolean> {
   try {
     const client = await pool.connect();
-    const result = await client.query('SELECT NOW(), PostGIS_version()');
+    const result = await client.query('SELECT NOW(), PostGIS_Version()');
     client.release();
     console.log('✅ Database connected:', result.rows[0]);
     return true;

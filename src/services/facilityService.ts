@@ -233,8 +233,11 @@ export async function createFacility(facility: Omit<Facility, 'id' | 'createdAt'
       data_sources,
       external_ids
     ) VALUES (
-      $1, $2, $3, ST_MakePoint($4, $5)::geography, $6, $7, $8,
-      $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21
+      $1, $2, $3, ST_MakePoint($4, $5)::geography, 
+      ST_Y(ST_MakePoint($4, $5)::geometry), 
+      ST_X(ST_MakePoint($4, $5)::geometry), 
+      $6,
+      $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19
     )
     RETURNING id
   `;
@@ -245,8 +248,6 @@ export async function createFacility(facility: Omit<Facility, 'id' | 'createdAt'
     facility.facilityTypeId,
     facility.location.lng,
     facility.location.lat,
-    facility.location.lat,
-    facility.location.lng,
     facility.address,
     facility.accessibility.wheelchairAccessible,
     facility.accessibility.hasRamp,
